@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYAHosting</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            padding: 2rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+        .logo {
+            width: 200px;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff8a00, #e52e71);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #cccccc;
+        }
+        .buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 180px;
+        }
+        .btn-primary {
+            background: linear-gradient(45deg, #ff8a00, #e52e71);
+            color: white;
+            box-shadow: 0 4px 15px rgba(229, 46, 113, 0.4);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(229, 46, 113, 0.6);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: #ffffff;
+            border: 2px solid #ff8a00;
+            box-shadow: 0 4px 15px rgba(255, 138, 0, 0.2);
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 138, 0, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(255, 138, 0, 0.3);
+        }
+        footer {
+            margin-top: 3rem;
+            padding: 1rem;
+            color: #888888;
+            font-size: 0.9rem;
+        }
+        .footer-text {
+            margin-top: 0.5rem;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            h1 {
+                font-size: 2.2rem;
+            }
+            .buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <img src="https://files.catbox.moe/s7oy0n.png" alt="SYAHosting Logo" class="logo">
+            <h1>SYAHosting</h1>
+            <p>Soluciones de hosting profesionales para tus proyectos</p>
+        </div>
+        
+        <div class="buttons">
+            <a href="cmd.html" class="btn btn-primary">Comenzar</a>
+            <a href="https://chat.whatsapp.com/DYEfOBaKEFQHD23tzMhbzi" class="btn btn-secondary" target="_blank">Soporte</a>
+        </div>
+        
+        <footer>
+            <div class="footer-text">Creado por SYA Team</div>
+        </footer>
+    </div>
+</body>
+</html>
