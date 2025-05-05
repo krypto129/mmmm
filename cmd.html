@@ -605,7 +605,7 @@
             historyIndex = commandHistory.length;
 
             // Mostrar comando en terminal
-            terminalOutput.textContent += `$ ${command}\n`;
+            terminalOutput.textContent += `SYAHost ~$ ${command}\n`;
 
             // Enviar comando al servidor
             socket.emit('command', command);
