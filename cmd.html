@@ -3,22 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SYA HOST Terminal</title>
+  <title>SYA HOST Terminal 24/7</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Consolas', 'Monaco', monospace;
+      font-family: 'Arial', sans-serif;
     }
 
     body {
-      background-color: #f5f5f5;
+      background-color: #121212;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       padding: 20px;
+      color: #f5f5f5;
     }
 
     .container {
@@ -27,17 +28,19 @@
     }
 
     .terminal-container {
-      border-radius: 8px;
+      border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 10px 30px rgba(255, 80, 80, 0.25);
       display: none;
+      border: 1px solid rgba(255, 100, 100, 0.3);
     }
 
     .auth-container {
-      background-color: #fff;
-      border-radius: 8px;
+      background-color: #1a1a1a;
+      border-radius: 10px;
       padding: 30px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 10px 30px rgba(255, 80, 80, 0.25);
+      border: 1px solid rgba(255, 100, 100, 0.3);
     }
 
     .auth-header {
@@ -46,12 +49,34 @@
     }
 
     .auth-header h2 {
-      color: #1a1a1a;
+      color: #ffffff;
       font-size: 24px;
+      margin-top: 10px;
+      background: linear-gradient(90deg, #FF8A00, #FF4D4D);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: bold;
+    }
+    
+    .auth-header .subtext {
+      color: #cccccc;
+      font-size: 14px;
+      margin-top: 8px;
+    }
+
+    .badge-24-7 {
+      background: linear-gradient(90deg, #FF8A00, #FF4D4D);
+      color: white;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      display: inline-block;
+      margin-top: 8px;
     }
 
     .auth-header img {
-      width: 120px;
+      width: 140px;
       margin-bottom: 15px;
     }
 
@@ -66,44 +91,59 @@
 
     .form-group label {
       display: block;
-      margin-bottom: 5px;
+      margin-bottom: 8px;
       font-size: 14px;
-      color: #333;
+      color: #ccc;
     }
 
     .form-group input {
       width: 100%;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
+      padding: 12px;
+      background-color: #2a2a2a;
+      border: 1px solid #444;
+      border-radius: 6px;
       font-size: 14px;
+      color: #fff;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus {
+      border-color: #FF8A00;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(255, 138, 0, 0.3);
     }
 
     .btn {
-      padding: 12px;
-      background-color: #1a1a1a;
+      padding: 14px;
+      background: linear-gradient(90deg, #FF8A00, #FF4D4D);
       color: white;
       border: none;
-      border-radius: 4ばかりpx;
+      border-radius: 6px;
       cursor: pointer;
-      font-size: 14px;
+      font-size: 16px;
       font-weight: bold;
-      transition: background-color 0.3s;
+      transition: all 0.3s;
+      text-align: center;
     }
 
     .btn:hover {
-      background-color: #333;
+      background: linear-gradient(90deg, #FF9F2F, #FF6B6B);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 80, 80, 0.3);
     }
 
     .btn-secondary {
-      background-color: transparent;
-      color: #1a1a1a;
-      border: 1px solid #ddd;
-      margin-top: 10px;
+      background: transparent;
+      color: #ccc;
+      border: 1px solid #444;
+      margin-top: 12px;
     }
 
     .btn-secondary:hover {
-      background-color: #f5f5f5;
+      background-color: #2a2a2a;
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
 
     .error-message {
@@ -112,10 +152,13 @@
       margin-top: 15px;
       text-align: center;
       display: none;
+      background-color: rgba(255, 95, 86, 0.1);
+      padding: 8px;
+      border-radius: 4px;
     }
 
     .terminal-header {
-      background-color: #1a1a1a;
+      background: linear-gradient(90deg, #1a1a1a, #2a2a2a);
       color: white;
       padding: 12px 16px;
       display: flex;
@@ -126,19 +169,54 @@
 
     .terminal-title {
       font-weight: bold;
-      font-size: 14px;
+      font-size: 16px;
       letter-spacing: 1px;
       display: flex;
       align-items: center;
     }
+    
+    .terminal-title img {
+      height: 24px;
+      margin-right: 10px;
+    }
 
     .user-info {
       margin-left: 12px;
-      background-color: #333;
-      padding: 2px 8px;
+      background-color: rgba(255, 77, 77, 0.2);
+      padding: 4px 10px;
       border-radius: 4px;
       font-size: 12px;
+      color: #FF8A00;
+      border: 1px solid rgba(255, 77, 77, 0.3);
+    }
+    
+    .badge-live {
+      display: flex;
+      align-items: center;
+      background-color: rgba(39, 201, 63, 0.2);
       color: #27c93f;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      margin-left: 10px;
+      border: 1px solid rgba(39, 201, 63, 0.3);
+    }
+    
+    .badge-live::before {
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background-color: #27c93f;
+      border-radius: 50%;
+      margin-right: 4px;
+      animation: pulse 1.5s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.5; }
+      100% { opacity: 1; }
     }
 
     .terminal-controls {
@@ -170,18 +248,21 @@
     }
 
     .logout-btn {
-      background-color: transparent;
+      background: transparent;
       border: none;
       color: #999;
       font-size: 12px;
       cursor: pointer;
-      padding: 0;
+      padding: 6px 10px;
       display: flex;
       align-items: center;
+      border-radius: 4px;
+      transition: all 0.3s;
     }
 
     .logout-btn:hover {
       color: #fff;
+      background-color: rgba(255, 80, 80, 0.2);
     }
 
     .logout-icon {
@@ -193,7 +274,7 @@
     .terminal-body {
       background-color: #0d0d0d;
       color: #f0f0f0;
-      height: 400px;
+      height: 450px;
       display: flex;
       flex-direction: column;
     }
@@ -206,48 +287,51 @@
       word-wrap: break-word;
       font-size: 14px;
       line-height: 1.5;
+      font-family: 'Consolas', 'Monaco', monospace;
     }
 
     .terminal-input-container {
       display: flex;
-      padding: 0 12px 12px 12px;
-      align-items: center; /* Align items vertically */
+      padding: 12px;
+      align-items: center;
+      background-color: #131313;
+      border-top: 1px solid #222;
     }
 
     .terminal-prompt {
-      color: #27c93f;
+      color: #FF4D4D;
       margin-right: 8px;
       font-weight: bold;
-      /* Ensure prompt stays in line */
       flex-shrink: 0;
+      font-family: 'Consolas', 'Monaco', monospace;
     }
 
     #terminal-input {
       background-color: transparent;
       border: none;
       color: #f0f0f0;
-      flex-grow: 1; /* Allow input to take available space */
+      flex-grow: 1;
       font-size: 14px;
       outline: none;
-      caret-color: #27c93f;
+      caret-color: #FF8A00;
+      font-family: 'Consolas', 'Monaco', monospace;
     }
 
     #terminal-input::placeholder {
-      color: #666;
+      color: #555;
       opacity: 0.7;
     }
 
-    /* Spinner styles */
     .command-loading {
-        display: none; /* Hidden by default */
+        display: none;
         width: 16px;
         height: 16px;
-        border: 2px solid rgba(255, 255, 255, 0.3);
-        border-top-color: #fff; /* Spinner color */
+        border: 2px solid rgba(255, 138, 0, 0.3);
+        border-top-color: #FF8A00;
         border-radius: 50%;
-        animation: spin 0.8s linear infinite; /* Animation */
-        margin-left: 8px; /* Space from input */
-        flex-shrink: 0; /* Prevent shrinking */
+        animation: spin 0.8s linear infinite;
+        margin-left: 8px;
+        flex-shrink: 0;
     }
 
     @keyframes spin {
@@ -259,21 +343,24 @@
       position: absolute;
       bottom: 10px;
       right: 10px;
-      padding: 4px 8px;
-      border-radius: 3px;
+      padding: 6px 12px;
+      border-radius: 20px;
       font-size: 12px;
       display: flex;
       align-items: center;
+      font-weight: bold;
     }
 
     .connection-status.connected {
       background-color: rgba(39, 201, 63, 0.2);
       color: #27c93f;
+      border: 1px solid rgba(39, 201, 63, 0.3);
     }
 
     .connection-status.disconnected {
       background-color: rgba(255, 95, 86, 0.2);
       color: #ff5f56;
+      border: 1px solid rgba(255, 95, 86, 0.3);
     }
 
     .connection-status::before {
@@ -287,10 +374,33 @@
 
     .connection-status.connected::before {
       background-color: #27c93f;
+      animation: pulse 1.5s infinite;
     }
 
     .connection-status.disconnected::before {
       background-color: #ff5f56;
+    }
+    
+    .features {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .feature {
+      text-align: center;
+      color: #ccc;
+      font-size: 12px;
+      flex: 1;
+      padding: 10px;
+    }
+    
+    .feature i {
+      color: #FF8A00;
+      font-size: 18px;
+      margin-bottom: 5px;
+      display: block;
     }
 
     ::-webkit-scrollbar {
@@ -302,30 +412,59 @@
     }
 
     ::-webkit-scrollbar-thumb {
-      background: #333;
+      background: #444;
       border-radius: 4px;
     }
 
     ::-webkit-scrollbar-thumb:hover {
-      background: #444;
+      background: #666;
+    }
+    
+    /* Animaciones */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .auth-container, .terminal-container {
+      animation: fadeIn 0.5s ease-out;
     }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
   <div class="container">
     <div class="auth-container" id="auth-container">
       <div class="auth-header">
+        <img src="https://files.catbox.moe/qmk9cm.png" alt="SYA HOST Logo">
         <h2>SYA HOST Terminal</h2>
+        <div class="badge-24-7">DISPONIBLE 24/7</div>
+        <p class="subtext">Soluciones de hosting profesionales y fáciles de usar</p>
+      </div>
+      
+      <div class="features">
+        <div class="feature">
+          <i class="fas fa-bolt"></i>
+          <span>Alta Velocidad</span>
+        </div>
+        <div class="feature">
+          <i class="fas fa-lock"></i>
+          <span>Seguro</span>
+        </div>
+        <div class="feature">
+          <i class="fas fa-headset"></i>
+          <span>Soporte 24/7</span>
+        </div>
       </div>
 
       <form class="auth-form" id="login-form">
         <div class="form-group">
           <label for="login-username">Nombre de usuario</label>
-          <input type="text" id="login-username" required>
+          <input type="text" id="login-username" required placeholder="Ingresa tu usuario">
         </div>
         <div class="form-group">
           <label for="login-password">Contraseña</label>
-          <input type="password" id="login-password" required>
+          <input type="password" id="login-password" required placeholder="Ingresa tu contraseña">
         </div>
         <button type="submit" class="btn">Iniciar sesión</button>
         <button type="button" class="btn btn-secondary" id="show-register">Crear cuenta</button>
@@ -335,15 +474,15 @@
       <form class="auth-form" id="register-form" style="display: none;">
         <div class="form-group">
           <label for="register-username">Nombre de usuario</label>
-          <input type="text" id="register-username" required>
+          <input type="text" id="register-username" required placeholder="Elige un nombre de usuario">
         </div>
         <div class="form-group">
           <label for="register-password">Contraseña</label>
-          <input type="password" id="register-password" required>
+          <input type="password" id="register-password" required placeholder="Crea una contraseña segura">
         </div>
         <div class="form-group">
           <label for="register-confirm">Confirmar contraseña</label>
-          <input type="password" id="register-confirm" required>
+          <input type="password" id="register-confirm" required placeholder="Repite la contraseña">
         </div>
         <button type="submit" class="btn">Registrarse</button>
         <button type="button" class="btn btn-secondary" id="show-login">Volver a iniciar sesión</button>
@@ -359,8 +498,10 @@
           <div class="terminal-control expand"></div>
         </div>
         <div class="terminal-title">
+          <img src="https://files.catbox.moe/qmk9cm.png" alt="SYA HOST Logo">
           SYA HOST
           <span class="user-info" id="user-info">...</span>
+          <span class="badge-live">24/7</span>
         </div>
         <div class="terminal-actions">
           <button class="logout-btn" id="logout-btn">
@@ -380,7 +521,7 @@
           <input
             type="text"
             id="terminal-input"
-            placeholder="Escribe un comando (ej: ls, pwd, touch archivo.txt)..."
+            placeholder="Escribe un comando (ej: ls, pwd, help)..."
             autocomplete="off"
             autofocus
           >
@@ -411,7 +552,7 @@
       const terminalOutput = document.getElementById('terminal-output');
       const terminalInput = document.getElementById('terminal-input');
       const connectionStatus = document.getElementById('connection-status');
-      const commandLoadingElement = document.getElementById('command-loading'); // Get the spinner element
+      const commandLoadingElement = document.getElementById('command-loading');
 
       // Variables del socket
       let socket = null;
@@ -444,27 +585,29 @@
         authContainer.style.display = 'none';
         terminalContainer.style.display = 'block';
         userInfoElement.textContent = username;
-        terminalOutput.textContent = "Conectando a SYA HOST Terminal...\n";
-        commandLoadingElement.style.display = 'none'; // Hide spinner on connection start
-
+        terminalOutput.textContent = "⚡ Conectando a SYA HOST Terminal 24/7...\n";
+        commandLoadingElement.style.display = 'none';
 
         // Eventos del socket
         socket.on("connect", () => {
           connectionStatus.className = "connection-status connected";
           connectionStatus.textContent = "Conectado";
+          terminalOutput.textContent += "\n🚀 ¡Conexión establecida con SYA HOST!\n";
+          terminalOutput.textContent += "📌 Servicio 24/7 activo y listo para usar.\n";
+          terminalOutput.textContent += "💡 Escribe 'help' para ver la lista de comandos disponibles.\n\n";
         });
 
         socket.on("disconnect", () => {
           connectionStatus.className = "connection-status disconnected";
           connectionStatus.textContent = "Desconectado";
-          terminalOutput.textContent += "\n\n[SYA HOST] Conexión perdida. Intentando reconectar...\n";
-          commandLoadingElement.style.display = 'none'; // Hide spinner on disconnect
+          terminalOutput.textContent += "\n\n⚠️ [SYA HOST] Conexión perdida. Intentando reconectar...\n";
+          commandLoadingElement.style.display = 'none';
         });
 
         socket.on("connect_error", (err) => {
           console.error("Error de conexión:", err.message);
-          terminalOutput.textContent += `\n\n[SYA HOST] Error de conexión: ${err.message}\n`;
-          commandLoadingElement.style.display = 'none'; // Hide spinner on connection error
+          terminalOutput.textContent += `\n\n❌ [SYA HOST] Error de conexión: ${err.message}\n`;
+          commandLoadingElement.style.display = 'none';
 
           // Si hay error de autenticación, cerrar sesión
           if (err.message === "Autenticación requerida" || err.message === "Token inválido") {
@@ -475,7 +618,7 @@
         socket.on("output", (data) => {
           terminalOutput.textContent += data;
           terminalOutput.scrollTop = terminalOutput.scrollHeight;
-          commandLoadingElement.style.display = 'none'; // Hide spinner when output is received
+          commandLoadingElement.style.display = 'none';
         });
 
         socket.on("session", (data) => {
@@ -500,7 +643,7 @@
         connectionStatus.textContent = "Desconectado";
         loginForm.reset();
         registerForm.reset();
-        commandLoadingElement.style.display = 'none'; // Hide spinner on logout
+        commandLoadingElement.style.display = 'none';
       };
 
       // Manejo de formularios y botones
@@ -611,50 +754,46 @@
             socket.emit('command', command);
 
             // Show loading spinner
-            commandLoadingElement.style.display = 'inline-block'; // Use inline-block for alignment
+            commandLoadingElement.style.display = 'inline-block';
 
             // Limpiar input
             terminalInput.value = '';
           } else if (command !== '' && (!socket || !socket.connected)) {
-             terminalOutput.textContent += `$ ${command}\n`; // Still show command typed
-             terminalOutput.textContent += "[SYA HOST] Error: No conectado al servidor.\n";
+             terminalOutput.textContent += `$ ${command}\n`;
+             terminalOutput.textContent += "❌ [SYA HOST] Error: No conectado al servidor.\n";
              terminalOutput.scrollTop = terminalOutput.scrollHeight;
              terminalInput.value = '';
           }
 
-
           terminalOutput.scrollTop = terminalOutput.scrollHeight;
-          e.preventDefault(); // Prevent default form submission if input was in a form
+          e.preventDefault();
         }
         // Navegación en historial
         else if (e.key === 'ArrowUp') {
           if (historyIndex > 0) {
             historyIndex--;
             terminalInput.value = commandHistory[historyIndex];
-            // Move cursor to the end of the input
             setTimeout(() => {
               terminalInput.selectionStart = terminalInput.value.length;
               terminalInput.selectionEnd = terminalInput.value.length;
             }, 0);
           } else if (historyIndex === 0) {
-             // Stay at the first command, move cursor to end
              setTimeout(() => {
                 terminalInput.selectionStart = terminalInput.value.length;
                 terminalInput.selectionEnd = terminalInput.value.length;
             }, 0);
           }
-          e.preventDefault(); // Prevent cursor movement
+          e.preventDefault();
         }
         else if (e.key === 'ArrowDown') {
           if (historyIndex < commandHistory.length - 1) {
             historyIndex++;
             terminalInput.value = commandHistory[historyIndex];
           } else {
-            // If already at the last command or no history, clear input
-            historyIndex = commandHistory.length; // Set index to represent "new command" state
+            historyIndex = commandHistory.length;
             terminalInput.value = '';
           }
-           e.preventDefault(); // Prevent cursor movement
+           e.preventDefault();
         }
       });
 
@@ -663,6 +802,38 @@
         terminalInput.focus();
       });
 
+      // Comandos personalizados
+      const handleCustomCommands = (command) => {
+        if (command === 'help') {
+          return `
+📋 Comandos disponibles:
+  - help        : Muestra esta ayuda
+  - clear       : Limpia la pantalla
+  - info        : Información sobre SYA HOST
+  - status      : Estado del servidor
+  - whoami      : Muestra tu usuario actual
+  - ls          : Lista archivos
+  - mkdir       : Crea un directorio
+  - cd          : Cambia de directorio
+  - touch       : Crea un archivo
+  - cat         : Muestra el contenido de un archivo
+  - rm          : Elimina un archivo
+  - 24/7        : Información sobre disponibilidad
+`;
+        } else if (command === 'clear') {
+          terminalOutput.textContent = '';
+          return '';
+        } else if (command === '24/7') {
+          return `
+✅ SYA HOST Terminal está disponible 24/7
+🔄 Servicios siempre activos con 99.9% de uptime
+🛡️ Monitoreo continuo de servidores
+🚀 Soporte técnico disponible en cualquier momento
+`;
+        }
+        return null;
+      };
+      
       // Comprobar autenticación al cargar
       if (!checkAuth()) {
         authContainer.style.display = 'block';
@@ -671,4 +842,4 @@
     });
   </script>
 </body>
-  </html>
+</html>
